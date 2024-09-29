@@ -8,7 +8,8 @@ class Program
         int operation = 0;
         Matrix A = new Matrix(1, 1), B = new Matrix(1, 1);
         bool flag = false;
-        int n = 0, m = 0;
+        int n, m;
+        string? input;
 
         while (operation != 10)
         {
@@ -39,28 +40,20 @@ class Program
             {
                 Console.Clear();
 
-
-
                 Console.WriteLine("Enter N and M for first matrix");
 
                 Console.WriteLine("Enter N:");
-                try
+                input = Console.ReadLine();
+                if (!int.TryParse(input, out n))
                 {
-                    n = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Input must be a number");
                 }
 
                 Console.WriteLine("Enter M:");
-                try
+                input = Console.ReadLine();
+                if (!int.TryParse(input, out m))
                 {
-                    m = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Input must be a number");
                 }
 
                 try
@@ -75,23 +68,17 @@ class Program
                 Console.WriteLine("Enter N and M for second matrix");
 
                 Console.WriteLine("Enter N:");
-                try
+                input = Console.ReadLine();
+                if (!int.TryParse(input, out n))
                 {
-                    n = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Input must be a number");
                 }
 
-                Console.WriteLine("Enter N:");
-                try
+                Console.WriteLine("Enter M:");
+                input = Console.ReadLine();
+                if (!int.TryParse(input, out m))
                 {
-                    m = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Input must be a number");
                 }
 
                 try
@@ -115,27 +102,22 @@ class Program
                     continue;
                 }
 
+                bool AB = true;
+                Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
+                AB = !(Console.ReadLine() != "A" && AB);
+
                 Console.WriteLine("Values are entered from left to right and from top to bottom");
                 try
                 {
-                    Console.WriteLine("A values:");
-                    A.ValuesFromKeyboard();
-                    Console.WriteLine("B values");
-                    B.ValuesFromKeyboard();
+                    (AB ? A : B).ValuesFromKeyboard();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                Console.WriteLine("Display the values on the screen?(y/n)");
-                if (Console.ReadLine() == "y")
-                {
-                    Console.WriteLine("First matrix:");
-                    A.PrintValues();
-                    Console.WriteLine("Second matrix:");
-                    B.PrintValues();
-                }
+                Console.WriteLine("Values of" + (AB ? "A" : "B") + ":");
+                (AB ? A : B).PrintValues();
             }
             else if (operation == 3)
             {
@@ -147,46 +129,39 @@ class Program
                     continue;
                 }
 
-                int minValue = 0, maxValue = 0;
+                int minValue, maxValue;
 
                 Console.WriteLine("Enter minValue for random");
+                input = Console.ReadLine();
+                if (!int.TryParse(input, out minValue))
+                {
+                    Console.WriteLine("Input must be a number");
+                }
+
+                Console.WriteLine("Enter maxValue for random");
+                input = Console.ReadLine();
+                if (!int.TryParse(input, out maxValue))
+                {
+                    Console.WriteLine("Input must be a number");
+                }
+
+                bool AB = true;
+                Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
+                AB = !(Console.ReadLine() != "A" && AB);
+
+                Console.WriteLine("Values are entered from left to right and from top to bottom");
                 try
                 {
-                    minValue = Convert.ToInt32(Console.ReadLine());
+                    (AB ? A : B).RandValues(minValue, maxValue);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                Console.WriteLine("Enter minValue for random");
-                try
-                {
-                    maxValue = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                Console.WriteLine("Values of" + (AB ? "A" : "B") + ":");
+                (AB ? A : B).PrintValues();
 
-                try
-                {
-                    A.RandValues(minValue, maxValue);
-                    B.RandValues(minValue, maxValue);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                Console.WriteLine("Display the values on the screen?(y/n)");
-                if (Console.ReadLine() == "y")
-                {
-                    Console.WriteLine("First matrix:");
-                    A.PrintValues();
-                    Console.WriteLine("Second matrix:");
-                    B.PrintValues();
-                }
             }
             else if (operation == 4)
             {
@@ -198,44 +173,23 @@ class Program
                     continue;
                 }
 
-                Console.WriteLine("Use existing values?(y/n)");
-
-                if (Console.ReadLine() == "y")
-                {
-                    try
-                    {
-                        (A + B).PrintValues();
-                        continue;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                }
-
-                Console.WriteLine("Enter new values");
-                Console.WriteLine("Values are entered from left to right and from top to bottom");
+                Matrix result = new Matrix(1, 1);
 
                 try
                 {
-                    Console.WriteLine("A values:");
-                    A.ValuesFromKeyboard();
-                    Console.WriteLine("B values");
-                    B.ValuesFromKeyboard();
+                    result = A + B;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                try
-                {
-                    (A + B).PrintValues();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                Console.WriteLine("A values:");
+                A.PrintValues();
+                Console.WriteLine("B values:");
+                B.PrintValues();
+                Console.WriteLine("Result values:");
+                result.PrintValues();
             }
             else if (operation == 5)
             {
@@ -247,209 +201,111 @@ class Program
                     continue;
                 }
 
-                Console.WriteLine("Use existing values?(y/n)");
-
-                if (Console.ReadLine() == "y")
-                {
-                    try
-                    {
-                        (A * B).PrintValues();
-                        continue;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                }
-
-                Console.WriteLine("Enter new values");
-                Console.WriteLine("Values are entered from left to right and from top to bottom");
+                Matrix result = new Matrix(1, 1);
 
                 try
                 {
-                    Console.WriteLine("A values:");
-                    A.ValuesFromKeyboard();
-                    Console.WriteLine("B values");
-                    B.ValuesFromKeyboard();
+                    result = A * B;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                try
-                {
-                    (A * B).PrintValues();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                Console.WriteLine("A values:");
+                A.PrintValues();
+                Console.WriteLine("B values:");
+                B.PrintValues();
+                Console.WriteLine("Result values:");
+                result.PrintValues();
             }
             else if (operation == 6)
             {
                 Console.Clear();
 
-                Console.WriteLine("Enter N and M for matrix");
+                if (!flag)
+                {
+                    Console.WriteLine("First, create the matrices. (Use operation 1)");
+                    continue;
+                }
 
-                Console.WriteLine("Enter N:");
+                bool AB = true;
+                Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
+                AB = !(Console.ReadLine() != "A" && AB);
+
+                double det = 0;
+
                 try
                 {
-                    n = Convert.ToInt32(Console.ReadLine());
+                    det = (AB ? A : B).Det();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                Console.WriteLine("Enter M:");
-                try
-                {
-                    m = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                try
-                {
-                    A = new Matrix(n, m);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                Console.WriteLine("Enter matrix values");
-                Console.WriteLine("Values are entered from left to right and from top to bottom");
-                try
-                {
-                    A.ValuesFromKeyboard();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                try
-                {
-                    Console.WriteLine($"Determinant: {A.Det()}");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                Console.WriteLine($"The determinant: {det}");
             }
             else if (operation == 7)
             {
                 Console.Clear();
 
-                Console.WriteLine("Enter N and M for matrix");
+                if (!flag)
+                {
+                    Console.WriteLine("First, create the matrices. (Use operation 1)");
+                    continue;
+                }
 
-                Console.WriteLine("Enter N:");
+                bool AB = true;
+                Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
+                AB = !(Console.ReadLine() != "A" && AB);
+
+                Matrix result = new Matrix(1, 1);
+
                 try
                 {
-                    n = Convert.ToInt32(Console.ReadLine());
+                    result = (AB ? A : B).Inverse();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                Console.WriteLine("Enter M:");
-                try
-                {
-                    m = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                try
-                {
-                    A = new Matrix(n, m);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                Console.WriteLine("Enter matrix values");
-                Console.WriteLine("Values are entered from left to right and from top to bottom");
-                try
-                {
-                    A.ValuesFromKeyboard();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                try
-                {
-                    A.Inverse().PrintValues();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                Console.WriteLine("Original matrix:");
+                (AB ? A : B).PrintValues();
+                Console.WriteLine("Inverse matrix:");
+                result.PrintValues();
             }
             else if (operation == 8)
             {
                 Console.Clear();
 
-                Console.WriteLine("Enter N and M for matrix");
+                if (!flag)
+                {
+                    Console.WriteLine("First, create the matrices. (Use operation 1)");
+                    continue;
+                }
 
-                Console.WriteLine("Enter N:");
+                bool AB = true;
+                Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
+                AB = !(Console.ReadLine() != "A" && AB);
+
+                Matrix result = new Matrix(1, 1);
+
                 try
                 {
-                    n = Convert.ToInt32(Console.ReadLine());
+                    result = (AB ? A : B).Transpose();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                Console.WriteLine("Enter M:");
-                try
-                {
-                    m = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                Console.WriteLine("Original matrix:");
+                (AB ? A : B).PrintValues();
+                Console.WriteLine("Transpose matrix:");
+                result.PrintValues();
 
-                try
-                {
-                    A = new Matrix(n, m);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                Console.WriteLine("Enter matrix values");
-                Console.WriteLine("Values are entered from left to right and from top to bottom");
-                try
-                {
-                    A.ValuesFromKeyboard();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                try
-                {
-                    A.Transpose().PrintValues();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
             }
             else if (operation == 9)
             {
@@ -461,44 +317,24 @@ class Program
                     continue;
                 }
 
-                Console.WriteLine("Use existing values?(y/n)");
-
-                if (Console.ReadLine() == "y")
-                {
-                    try
-                    {
-                        Matrix.SolveEqSys(A, B);
-                        continue;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                }
-
-                Console.WriteLine("Enter new values");
-                Console.WriteLine("Values are entered from left to right and from top to bottom");
+                Matrix result = new Matrix(1, 1);
 
                 try
                 {
-                    Console.WriteLine("A values:");
-                    A.ValuesFromKeyboard();
-                    Console.WriteLine("B values");
-                    B.ValuesFromKeyboard();
+                    result = Matrix.SolveEqSys(A, B);
+                    continue;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                try
-                {
-                    Matrix.SolveEqSys(A, B);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                Console.WriteLine("A matrix:");
+                A.PrintValues();
+                Console.WriteLine("B matrix:");
+                B.PrintValues();
+                Console.WriteLine("X:");
+                result.PrintValues();
             }
         }
 
