@@ -277,7 +277,7 @@ class Matrix
 
         if (bufD == 0)
         {
-            throw new Exception("The determinant of matrix A is 0. The system is incompatible.");
+            throw new Exception("The determinant of matrix A is 0. The system has no solutions or has an infinite number of solutions.");
         }
 
         return A.Inverse() * B;

@@ -25,16 +25,14 @@ class Program
             Console.WriteLine("8: Matrix transposition");
             Console.WriteLine("9: Finding the roots of a system of equations given by a matrix");
             Console.WriteLine("10: Exit");
+            Console.WriteLine("Enter command:");
 
-            try
+            input = Console.ReadLine();
+            if (!int.TryParse(input, out operation))
             {
-                operation = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Input must be a number");
+                continue;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
 
             if (operation == 1)
             {
@@ -47,6 +45,7 @@ class Program
                 if (!int.TryParse(input, out n))
                 {
                     Console.WriteLine("Input must be a number");
+                    continue;
                 }
 
                 Console.WriteLine("Enter M:");
@@ -54,6 +53,7 @@ class Program
                 if (!int.TryParse(input, out m))
                 {
                     Console.WriteLine("Input must be a number");
+                    continue;
                 }
 
                 try
@@ -63,7 +63,10 @@ class Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
+
+                Console.WriteLine($"Matrix A[{n},{m}] created");
 
                 Console.WriteLine("Enter N and M for second matrix");
 
@@ -72,6 +75,7 @@ class Program
                 if (!int.TryParse(input, out n))
                 {
                     Console.WriteLine("Input must be a number");
+                    continue;
                 }
 
                 Console.WriteLine("Enter M:");
@@ -79,6 +83,7 @@ class Program
                 if (!int.TryParse(input, out m))
                 {
                     Console.WriteLine("Input must be a number");
+                    continue;
                 }
 
                 try
@@ -88,7 +93,10 @@ class Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
+
+                Console.WriteLine($"Matrix B[{n},{m}] created");
 
                 flag = true;
             }
@@ -104,7 +112,7 @@ class Program
 
                 bool AB = true;
                 Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
-                AB = !(Console.ReadLine() != "A" && AB);
+                AB = !(Console.ReadLine() == "B" && AB);
 
                 Console.WriteLine("Values are entered from left to right and from top to bottom");
                 try
@@ -114,9 +122,10 @@ class Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
 
-                Console.WriteLine("Values of" + (AB ? "A" : "B") + ":");
+                Console.WriteLine("Values of " + (AB ? "A" : "B") + ":");
                 (AB ? A : B).PrintValues();
             }
             else if (operation == 3)
@@ -136,6 +145,7 @@ class Program
                 if (!int.TryParse(input, out minValue))
                 {
                     Console.WriteLine("Input must be a number");
+                    continue;
                 }
 
                 Console.WriteLine("Enter maxValue for random");
@@ -143,11 +153,12 @@ class Program
                 if (!int.TryParse(input, out maxValue))
                 {
                     Console.WriteLine("Input must be a number");
+                    continue;
                 }
 
                 bool AB = true;
                 Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
-                AB = !(Console.ReadLine() != "A" && AB);
+                AB = !(Console.ReadLine() == "B" && AB);
 
                 Console.WriteLine("Values are entered from left to right and from top to bottom");
                 try
@@ -157,9 +168,10 @@ class Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
 
-                Console.WriteLine("Values of" + (AB ? "A" : "B") + ":");
+                Console.WriteLine("Values of " + (AB ? "A" : "B") + ":");
                 (AB ? A : B).PrintValues();
 
             }
@@ -173,6 +185,11 @@ class Program
                     continue;
                 }
 
+                Console.WriteLine("A values:");
+                A.PrintValues();
+                Console.WriteLine("B values:");
+                B.PrintValues();
+
                 Matrix result = new Matrix(1, 1);
 
                 try
@@ -182,12 +199,9 @@ class Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
 
-                Console.WriteLine("A values:");
-                A.PrintValues();
-                Console.WriteLine("B values:");
-                B.PrintValues();
                 Console.WriteLine("Result values:");
                 result.PrintValues();
             }
@@ -201,6 +215,11 @@ class Program
                     continue;
                 }
 
+                Console.WriteLine("A values:");
+                A.PrintValues();
+                Console.WriteLine("B values:");
+                B.PrintValues();
+
                 Matrix result = new Matrix(1, 1);
 
                 try
@@ -210,12 +229,9 @@ class Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
 
-                Console.WriteLine("A values:");
-                A.PrintValues();
-                Console.WriteLine("B values:");
-                B.PrintValues();
                 Console.WriteLine("Result values:");
                 result.PrintValues();
             }
@@ -231,7 +247,10 @@ class Program
 
                 bool AB = true;
                 Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
-                AB = !(Console.ReadLine() != "A" && AB);
+                AB = !(Console.ReadLine() == "B" && AB);
+
+                Console.WriteLine("Matrix: ");
+                (AB ? A : B).PrintValues();
 
                 double det = 0;
 
@@ -242,6 +261,7 @@ class Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
 
                 Console.WriteLine($"The determinant: {det}");
@@ -258,7 +278,10 @@ class Program
 
                 bool AB = true;
                 Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
-                AB = !(Console.ReadLine() != "A" && AB);
+                AB = !(Console.ReadLine() == "B" && AB);
+
+                Console.WriteLine("Original matrix:");
+                (AB ? A : B).PrintValues();
 
                 Matrix result = new Matrix(1, 1);
 
@@ -269,10 +292,9 @@ class Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
 
-                Console.WriteLine("Original matrix:");
-                (AB ? A : B).PrintValues();
                 Console.WriteLine("Inverse matrix:");
                 result.PrintValues();
             }
@@ -288,18 +310,11 @@ class Program
 
                 bool AB = true;
                 Console.WriteLine("Choose A or B matrix(Enter A for A and B for B):");
-                AB = !(Console.ReadLine() != "A" && AB);
+                AB = !(Console.ReadLine() == "B" && AB);
 
                 Matrix result = new Matrix(1, 1);
 
-                try
-                {
-                    result = (AB ? A : B).Transpose();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                result = (AB ? A : B).Transpose();
 
                 Console.WriteLine("Original matrix:");
                 (AB ? A : B).PrintValues();
@@ -317,26 +332,28 @@ class Program
                     continue;
                 }
 
+                Console.WriteLine("A matrix:");
+                A.PrintValues();
+                Console.WriteLine("B matrix:");
+                B.PrintValues();
+
                 Matrix result = new Matrix(1, 1);
 
                 try
                 {
                     result = Matrix.SolveEqSys(A, B);
-                    continue;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    continue;
                 }
 
-                Console.WriteLine("A matrix:");
-                A.PrintValues();
-                Console.WriteLine("B matrix:");
-                B.PrintValues();
                 Console.WriteLine("X:");
                 result.PrintValues();
             }
         }
 
+        Console.WriteLine("Thanks for using");
     }
 }
