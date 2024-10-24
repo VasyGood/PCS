@@ -1,0 +1,14 @@
+c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.AssemblyInfoInputs.cache
+c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.AssemblyInfo.cs
+c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.csproj.CoreCompileInputs.cache
+c:\Users\пк\Documents\Codes\csharps\csharp4\bin\Debug\net8.0\csharp4.exe
+C:\Users\пк\Documents\Codes\csharps\csharp4\bin\Debug\net8.0\csharp4.deps.json
+C:\Users\пк\Documents\Codes\csharps\csharp4\bin\Debug\net8.0\csharp4.runtimeconfig.json
+c:\Users\пк\Documents\Codes\csharps\csharp4\bin\Debug\net8.0\csharp4.dll
+c:\Users\пк\Documents\Codes\csharps\csharp4\bin\Debug\net8.0\csharp4.pdb
+c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.dll
+c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\refint\csharp4.dll
+c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.pdb
+C:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.genruntimeconfig.cache
+C:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\ref\csharp4.dll
