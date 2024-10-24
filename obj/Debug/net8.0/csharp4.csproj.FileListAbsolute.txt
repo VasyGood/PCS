@@ -12,3 +12,4 @@ c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\refint\csharp4.dl
 c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.pdb
 C:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.genruntimeconfig.cache
 C:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\ref\csharp4.dll
+c:\Users\пк\Documents\Codes\csharps\csharp4\obj\Debug\net8.0\csharp4.sourcelink.json

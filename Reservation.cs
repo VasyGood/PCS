@@ -21,18 +21,20 @@ namespace Product
             Comment = comment;
         }
 
-        public void ChangeInfo(int id, string clientName, string number, int startTime, int endTime, Table table, string comment = "")
+        public Reservation ChangeInfo(int id, string clientName, string number, int startTime, int endTime, ref Table table, string comment = "")
         {
 
-            if (table.IsReserved(startTime, endTime)) 
+            if (table.IsReserved(startTime, endTime, this)) 
             {
                 Console.WriteLine("This table is reserved in this time. Choose another table or another time");
-                return;
+                return this;
             }
+
             ID = id;
             ClientName = clientName;
             Number = number;
             Comment = comment;
+            return this;
         }
 
         public void Cancel()

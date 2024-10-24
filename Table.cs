@@ -44,8 +44,14 @@ namespace Product
             active = false;
         }
 
+        public bool IsInRes() => active;
         public void SetTableInfo(Place place, int seatsNumber)
         {
+            if (IsInRes())
+            {
+                Console.WriteLine("Info cant be changed. The table is included in the reservation");
+                return;
+            }
             Place = place;
             SeatsNumber = seatsNumber;
         }
@@ -63,15 +69,19 @@ namespace Product
                 {
                     Timetable[i].Reservation?.PrintLineInfo();
                 }
+                else 
+                {
+                    Console.Write("\n");
+                }
             }
         }
 
-        public bool IsReserved(int start, int end) {
+        public bool IsReserved(int start, int end, Reservation? res = null) {
             bool flag = false; 
 
             for (int i = start; i < end; i++) 
             {
-                if (Timetable[i - 9].IsReserved) 
+                if (Timetable[i - 9].IsReserved && Timetable[i-9].Reservation?.ID != res?.ID) 
                 {
                     Console.WriteLine($"This table is reserved for this time {i}:00-{i + 1}:00");
                     flag = true;
